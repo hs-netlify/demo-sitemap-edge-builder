@@ -1,0 +1,13 @@
+[build]
+  publish = ".next"
+  command = "next build"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[edge_functions]]
+  path = "/*"
+  function = "sitemap"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
