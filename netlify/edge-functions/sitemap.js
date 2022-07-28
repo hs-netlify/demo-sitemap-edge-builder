@@ -4,5 +4,5 @@ export default (request, context) => {
   });
   return pattern.test(request.url)
     ? context.rewrite("/.netlify/builders/sitemap")
-    : context.next();
+    : undefined;
 };
