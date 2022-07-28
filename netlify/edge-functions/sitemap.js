@@ -3,6 +3,6 @@ export default (request, context) => {
     pathname: "/:category(.*sitemap.*\\.xml)",
   });
   return pattern.test(request.url)
-    ? context.rewrite("/.netlify/builders/sitemap")
+    ? context.rewrite("/.netlify/builders/sitemap/:category")
     : undefined;
 };
