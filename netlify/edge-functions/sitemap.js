@@ -3,9 +3,8 @@ export default (request, context) => {
     pathname: "/:category(.*sitemap.*\\.xml)",
   });
 
-  const splitSlug = request.url.split("/");
-  const slug = splitSlug[splitSlug.length - 1];
-
+  const slug = pattern.exec(request.url)?.pathname?.groups?.category;
+  console.log(`/.netlify/builders/sitemap/${slug}`);
   return pattern.test(request.url)
     ? context.rewrite(`/.netlify/builders/sitemap/${slug}`)
     : undefined;

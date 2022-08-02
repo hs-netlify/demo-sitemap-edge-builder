@@ -12,6 +12,7 @@ async function handler(event, context) {
       headers: { "Access-Control-Allow-Origin": "*" },
     })
   ).text();
+  console.log("here");
 
   return {
     statusCode: 200,
