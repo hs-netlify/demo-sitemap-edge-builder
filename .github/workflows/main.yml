@@ -14,7 +14,7 @@ jobs:
         uses: jakepartusch/wait-for-netlify-action@v1.3
         id: waitFor200
         with:
-          site_name: "serene-frangipane-d06b36/"
+          site_name: "serene-frangipane-d06b36"
           max_timeout: 600
       - name: run Playwright
         id: run_playwright
