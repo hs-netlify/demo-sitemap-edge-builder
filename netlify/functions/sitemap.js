@@ -19,7 +19,7 @@ async function handler(event, context) {
     headers: {
       "Content-Type": "text/xml; charset=UTF-8",
     },
-    ttl: 300,
+    ttl: 60,
   };
 }
 
