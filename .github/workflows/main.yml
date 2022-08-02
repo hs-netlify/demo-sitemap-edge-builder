@@ -1,15 +1,21 @@
 name: Deployment Actions
 
-on: status
+on: [pull_request]
 
 jobs:
+
   browser_e2e:
     # Only want to run on success, otherwise it might be "pending", or "failure". Test
-    if: ${{ (github.event.state == 'success') }}
     name: Browser E2E Eng
     runs-on: ubuntu-latest
 
     steps:
+      - name: Waiting for 200 from the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@v1.3
+        id: waitFor200
+        with:
+          site_name: "serene-frangipane-d06b36/"
+          max_timeout: 600
       - name: run Playwright
         id: run_playwright
         run: npm run playwright:test:ci
