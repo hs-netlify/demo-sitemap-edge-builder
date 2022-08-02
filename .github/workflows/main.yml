@@ -1,11 +1,11 @@
 name: Deployment Actions
 
-on: deployment_status
+on: status
 
 jobs:
   browser_e2e:
     # Only want to run on success, otherwise it might be "pending", or "failure". Test
-    if: ${{ (github.event.deployment_status.state == 'success') }}
+    if: ${{ (github.event.state == 'success') }}
     name: Browser E2E Eng
     runs-on: ubuntu-latest
 
