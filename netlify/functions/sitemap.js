@@ -2,16 +2,24 @@ import { builder } from "@netlify/functions";
 import fetch from "node-fetch";
 
 async function handler(event, context) {
-  const time = new Date().toLocaleTimeString();
-  const sitemap = `<?xml version="1.0"?><time>${time}</time>`;
+  const domain = "https://editors.dexerto.com";
+
+  const path = event.path.split("/");
+  const param = path[path.length - 1];
+
+  const sitemap = await (
+    await fetch(`${domain}/${param}`, {
+      headers: { "Access-Control-Allow-Origin": "*" },
+    })
+  ).text();
 
   return {
     statusCode: 200,
-    headers: {
-      "Content-Type": "text/xml",
-    },
     body: sitemap,
-    ttl: 60,
+    headers: {
+      "Content-Type": "text/xml; charset=UTF-8",
+    },
+    ttl: 300,
   };
 }
 
